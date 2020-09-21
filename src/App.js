@@ -1,25 +1,26 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, {useState } from 'react';
+import { Map as LeafletMap, TileLayer } from "react-leaflet";
+import './App.css'
+import "leaflet/dist/leaflet.css"
 
 function App() {
+
+
+  const [mapCenter, setMapCenter] = useState({ lat:21.45388, lng:91.96765});
+  const [mapZoom, setMapZoom] = useState(10);
+
+
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+<div className="map">
+          <h1 style={{textAlign:'center'}}>React Map Using Leaf let</h1>
+            <LeafletMap center={mapCenter} zoom={mapZoom}>
+                <TileLayer
+                    url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                    attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+                />
+            </LeafletMap>
+        </div>
   );
 }
 
